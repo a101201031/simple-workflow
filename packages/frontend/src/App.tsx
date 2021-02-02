@@ -1,26 +1,34 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {
+  Box,
+  Button,
+  ButtonGroup,
+  ChakraProvider,
+  Container,
+  Flex,
+  Spacer,
+} from '@chakra-ui/react';
 
-function App() {
+export const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ChakraProvider>
+      <Flex mh="64px" mt="auto" bg="gray.700" p="3" alignItems="center">
+        <Box p="2" bg="red.400">
+          LOGO
+        </Box>
+        <Spacer />
+        <Box>
+          <ButtonGroup colorScheme="gray">
+            <Button variant="link" m="0px 15px">
+              Sign in
+            </Button>
+            <Button variant="outline" m="0px 15px">
+              Sign on
+            </Button>
+          </ButtonGroup>
+        </Box>
+      </Flex>
+      <Container></Container>
+    </ChakraProvider>
   );
-}
-
-export default App;
+};
