@@ -16,7 +16,7 @@ import { ColorModeSwitcher } from 'ColorModeSwitcher';
 export const Home: FC = () => {
   return (
     <ChakraProvider>
-      <Flex mh="64px" bgColor="gray" p="3" alignItems="center">
+      <Flex mh="64px" p="3" alignItems="center">
         <Box p="2" bg="red.400">
           LOGO
         </Box>
