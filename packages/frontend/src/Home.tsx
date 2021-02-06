@@ -11,22 +11,26 @@ import {
   Text,
 } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
+import { ColorModeSwitcher } from 'ColorModeSwitcher';
 
 export const Home: FC = () => {
   return (
     <ChakraProvider>
-      <Flex mh="64px" bg="gray.700" p="3" alignItems="center">
+      <Flex mh="64px" bgColor="gray" p="3" alignItems="center">
         <Box p="2" bg="red.400">
           LOGO
         </Box>
         <Spacer />
         <Box>
-          <ButtonGroup colorScheme="gray">
-            <Button variant="link">Sign in</Button>
+          <ButtonGroup colorScheme="withe" alignItems="center">
+            <Link to="/">
+              <Button variant="link">Sign in</Button>
+            </Link>
             <Spacer w="1em"></Spacer>
             <Link to="/sign-up">
               <Button variant="outline">Sign up</Button>
             </Link>
+            <ColorModeSwitcher />
           </ButtonGroup>
         </Box>
       </Flex>
