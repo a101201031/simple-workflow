@@ -3,7 +3,6 @@ import {
   Box,
   Button,
   ButtonGroup,
-  ChakraProvider,
   Container,
   Flex,
   Spacer,
@@ -11,11 +10,10 @@ import {
   Text,
 } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
-import { ColorModeSwitcher } from 'ColorModeSwitcher';
 
 export const Home: FC = () => {
   return (
-    <ChakraProvider>
+    <>
       <Flex mh="64px" p="3" alignItems="center">
         <Box p="2" bg="red.400">
           LOGO
@@ -23,14 +21,13 @@ export const Home: FC = () => {
         <Spacer />
         <Box>
           <ButtonGroup colorScheme="withe" alignItems="center">
-            <Link to="/">
+            <Link to="/sign-in">
               <Button variant="link">Sign in</Button>
             </Link>
             <Spacer w="1em"></Spacer>
             <Link to="/sign-up">
               <Button variant="outline">Sign up</Button>
             </Link>
-            <ColorModeSwitcher />
           </ButtonGroup>
         </Box>
       </Flex>
@@ -54,6 +51,6 @@ export const Home: FC = () => {
           Example Image
         </Box>
       </Flex>
-    </ChakraProvider>
+    </>
   );
 };

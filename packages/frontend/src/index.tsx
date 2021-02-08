@@ -3,12 +3,9 @@ import ReactDOM from 'react-dom';
 import { App } from 'App';
 import reportWebVitals from './reportWebVitals';
 import { RecoilRoot } from 'recoil';
-import { ColorModeScript } from '@chakra-ui/react';
-import { theme } from 'theme';
 
 ReactDOM.render(
   <React.StrictMode>
-    <ColorModeScript initialColorMode={theme.config.initialColorMode} />
     <RecoilRoot>
       <App />
     </RecoilRoot>
