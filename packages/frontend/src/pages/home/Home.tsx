@@ -1,4 +1,3 @@
-import React, { FC } from 'react';
 import {
   Box,
   Button,
@@ -9,28 +8,31 @@ import {
   Stack,
   Text,
 } from '@chakra-ui/react';
+import React, { FC } from 'react';
 import { Link } from 'react-router-dom';
 
 export const Home: FC = () => {
   return (
     <>
-      <Flex mh="64px" p="3" alignItems="center">
-        <Box p="2" bg="red.400">
-          LOGO
-        </Box>
-        <Spacer />
-        <Box>
-          <ButtonGroup colorScheme="withe" alignItems="center">
-            <Link to="/sign-in">
-              <Button variant="link">Sign in</Button>
-            </Link>
-            <Spacer w="1em"></Spacer>
-            <Link to="/sign-up">
-              <Button variant="outline">Sign up</Button>
-            </Link>
-          </ButtonGroup>
-        </Box>
-      </Flex>
+      <Box bgColor="gray.700">
+        <Flex mh="64px" p="3" alignItems="center">
+          <Box p="2" bg="red.400">
+            LOGO
+          </Box>
+          <Spacer />
+          <Box>
+            <ButtonGroup colorScheme="withe" alignItems="center">
+              <Link to="/sign/in">
+                <Button variant="link">Sign in</Button>
+              </Link>
+              <Spacer w="1em"></Spacer>
+              <Link to="/sign/up">
+                <Button variant="outline">Sign up</Button>
+              </Link>
+            </ButtonGroup>
+          </Box>
+        </Flex>
+      </Box>
       <Flex alignItems="center" h="calc(100vh - 64px)">
         <Container>
           <Box>
