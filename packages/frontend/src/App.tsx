@@ -1,27 +1,11 @@
+import { Home } from 'pages/home/Home';
+import { Sign } from 'pages/sign/Sign';
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { Home } from 'Home';
-import { SignUp } from 'SignUp';
-import { SignIn } from 'SignIn';
-import { ChakraProvider } from '@chakra-ui/react';
-import { theme } from 'theme';
+import { Route, Switch } from 'react-router-dom';
 
-export const App = () => {
-  return (
-    <ChakraProvider theme={theme}>
-      <Router>
-        <Switch>
-          <Route path="/sign-up">
-            <SignUp />
-          </Route>
-          <Route path="/sign-in">
-            <SignIn />
-          </Route>
-          <Route path="/">
-            <Home />
-          </Route>
-        </Switch>
-      </Router>
-    </ChakraProvider>
-  );
-};
+export const App = () => (
+  <Switch>
+    <Route path="/sign" component={Sign} />
+    <Route path="/" component={Home} />
+  </Switch>
+);
