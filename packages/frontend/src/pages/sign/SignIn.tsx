@@ -13,6 +13,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { fetcher } from 'helper';
 import React, { FC, useCallback } from 'react';
 import { useForm } from 'react-hook-form';
+import { useHistory } from 'react-router-dom';
 import * as Yup from 'yup';
 
 interface SginInTypes {
@@ -34,6 +35,7 @@ export const SignIn: FC = () => {
   } = useForm<SginInTypes>({
     resolver: yupResolver(schema),
   });
+  const { push } = useHistory();
 
   const toast = useToast();
 
@@ -44,6 +46,8 @@ export const SignIn: FC = () => {
           path: '/token',
           bodyParams: data,
         });
+        localStorage.setItem('accessToken', accessToken);
+        push('/main');
       } catch (e) {
         setError('email', {});
         setError('password', { shouldFocus: true });
@@ -56,7 +60,7 @@ export const SignIn: FC = () => {
         });
       }
     },
-    [setError, toast],
+    [push, setError, toast],
   );
 
   return (
