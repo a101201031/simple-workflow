@@ -4,7 +4,6 @@ import { ENV } from 'constants/ENV';
 
 const axiosClient = axios.create({
   baseURL: ENV.API_URL,
-  validateStatus: (status) => status < 500,
   headers: {
     'Content-Type': 'application/json',
   },
