@@ -19,7 +19,7 @@
   },
   "scripts": {
     "test": "echo \"Error: run tests from root\" && exit 1",
-    "start:auto": "./node_modules/nodemon/bin/nodemon.js --watch src --delay 1 --exec 'ts-node' src/app.ts"
+    "dev": "./node_modules/nodemon/bin/nodemon.js --watch src --delay 1 --exec 'ts-node' src/app.ts"
   },
   "bugs": {
     "url": "https://github.com/a101201031/simple-workflow/issues"
