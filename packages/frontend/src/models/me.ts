@@ -1,7 +1,8 @@
+import { Group } from './group';
+
 export interface Me {
   userName: string;
   email: string;
-  groupId?: string;
-  groupName?: string;
+  group: Group;
   auth: 'USER' | 'ADMIN';
 }
