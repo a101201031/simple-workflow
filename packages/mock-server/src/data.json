@@ -1,0 +1,17 @@
+{
+  "me": {
+    "userName": "JavaScript cho",
+    "email": "admin@alwayscoding",
+    "group": {
+      "groupId": "1",
+      "groupName": "tech dept"
+    },
+    "auth": "ADMIN"
+  },
+  "group": [
+    {
+      "groupId": "1",
+      "groupName": "tech dept"
+    }
+  ]
+}
