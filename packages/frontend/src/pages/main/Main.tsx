@@ -67,21 +67,21 @@ export const Main: FC = () => {
           </Box>
           <Spacer />
         </SideContents>
-        <SideChild>
+        <SideChild display={activeMenu.active ? 'flex' : 'none'}>
           <MdSubdirectoryArrowRight />
           <Box w="150px">
             <Text isTruncated>Request for Appr.</Text>
           </Box>
           <Spacer />
         </SideChild>
-        <SideChild>
+        <SideChild display={activeMenu.active ? 'flex' : 'none'}>
           <MdSubdirectoryArrowRight />
           <Box w="150px">
             <Text isTruncated>Apprroval</Text>
           </Box>
           <Spacer />
         </SideChild>
-        <SideChild>
+        <SideChild display={activeMenu.active ? 'flex' : 'none'}>
           <MdSubdirectoryArrowRight />
           <Box w="150px">
             <Text isTruncated>Appr. history</Text>
