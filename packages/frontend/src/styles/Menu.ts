@@ -7,6 +7,7 @@ export const SideContents = chakra(Flex, {
     h: '40px',
     alignItems: 'center',
     justifyContent: 'space-around',
+    cursor: 'pointer',
   },
 });
 
@@ -18,5 +19,6 @@ export const SideChild = chakra(Flex, {
     h: '40px',
     alignItems: 'center',
     justifyContent: 'space-around',
+    cursor: 'pointer',
   },
 });
