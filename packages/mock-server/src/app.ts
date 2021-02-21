@@ -32,6 +32,31 @@ server.use('/', (req, res, next) => {
   }
 });
 
+server.get('/approval', (_, res) => {
+  res.json([
+    {
+      approvalFormName: 'leave',
+      insertDate: new Date(),
+      user: {
+        userName: 'JavaScript cho',
+        email: 'admin@alwayscoding',
+        groupName: 'tech dept',
+      },
+      approver: [
+        {
+          userName: 'JavaScript cho',
+          email: 'admin@alwayscoding',
+          groupName: 'tech dept',
+          step: 1,
+          status: 'PENDING',
+        },
+      ],
+      status: 'PENDING',
+      lastUpdate: new Date(),
+    },
+  ]);
+});
+
 server.use(router);
 
 server.listen(port, () => {
