@@ -6,7 +6,7 @@ interface Approver extends User {
   comment?: string;
 }
 
-export interface approval {
+export interface Approval {
   _id: string;
   approvalFormName: string;
   insertDate: Date;
