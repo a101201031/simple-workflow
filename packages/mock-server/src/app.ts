@@ -48,6 +48,13 @@ server.get('/approval', (_, res) => {
           email: 'admin@alwayscoding',
           groupName: 'tech dept',
           step: 1,
+          status: 'RESOLVE',
+        },
+        {
+          userName: 'JavaScript Youn',
+          email: 'jhyoun@alwayscoding',
+          groupName: 'tech dept',
+          step: 2,
           status: 'PENDING',
         },
       ],

@@ -2,12 +2,12 @@ import { User } from './';
 interface Approver extends User {
   date: Date;
   step: number;
-  status: 'PENDING' | 'REJECT' | 'RESOLVE';
+  status: null | 'PENDING' | 'REJECT' | 'RESOLVE';
   comment?: string;
 }
 
 export interface Approval {
-  _id: string;
+  _id?: string;
   approvalFormName: string;
   insertDate: Date;
   user: User;
