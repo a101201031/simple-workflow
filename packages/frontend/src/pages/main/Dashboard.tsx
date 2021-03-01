@@ -18,51 +18,80 @@ import { ApprSelector, MeSelector } from 'stores';
 
 export const Dashboard: FC = () => {
   const me = useRecoilValue(MeSelector);
-  const approvals = useRecoilValue(ApprSelector);
+
   return (
-    <Flex w="100%" h="100%" justifyContent="center" alignItems="center">
-      <Box
-        p="8px"
-        bgColor="gray.600"
+    <Flex
+      w="100%"
+      h="100%"
+      justifyContent="center"
+      alignItems="center"
+      flexWrap="wrap"
+    >
+      <Flex
+        w="320px"
+        h="240px"
+        p="16px"
+        bgColor="gray.800"
         borderWidth="1px"
         borderRadius="16px"
         boxShadow="lg"
-        textAlign="right"
       >
-        <Heading size="lg" fontSize="24px">
-          Hello, {me.userName}
-        </Heading>
-        <Text>{me.group?.groupName || 'None Group.'}</Text>
-        <Text>{me.email}</Text>
-      </Box>
-      <Box>
+        <Box w="64px" h="64px" bgColor="red">
+          IMG
+        </Box>
+        <Box textAlign="right">
+          <Heading fontSize="24px">Hello, {me.userName}</Heading>
+          <Text>{me.group?.groupName || 'None Group.'}</Text>
+          <Text>{me.email}</Text>
+          <Text fontWeight="bold">Edit Profile</Text>
+        </Box>
+      </Flex>
+
+      <Box
+        w="60%"
+        h="30%"
+        p="8px"
+        bgColor="gray.800"
+        borderWidth="1px"
+        borderRadius="16px"
+        boxShadow="lg"
+      >
         <ApprTables />
       </Box>
     </Flex>
   );
 };
 
-interface Data {
-  name: string;
-  age: number;
-}
-
 const ApprTables: FC = () => {
   const approvals = useRecoilValue(ApprSelector);
-  const data = React.useMemo<Approval[]>(() => approvals, []);
+
   const columns = React.useMemo<Column<Approval>[]>(
     () => [
       {
-        Header: 'Approval Form',
+        Header: 'approval form',
         accessor: 'approvalFormName',
       },
       {
-        Header: 'user',
-        accessor: (data) => data.user.userName,
+        Header: 'step',
+        accessor: (data) => {
+          const a = data.approver.find((val) => val.status === 'PENDING');
+          return `${a?.step || 'error'}`;
+        },
+      },
+      {
+        Header: 'approver',
+        accessor: (data) => {
+          const a = data.approver.find((val) => val.status === 'PENDING');
+          return `${a?.userName || 'error'}`;
+        },
       },
       {
         Header: 'status',
         accessor: 'status',
+      },
+      {
+        Header: 'request date',
+        accessor: 'insertDate',
       },
     ],
     [],
@@ -74,7 +103,7 @@ const ApprTables: FC = () => {
     headerGroups,
     rows,
     prepareRow,
-  } = useTable<Approval>({ columns, data });
+  } = useTable<Approval>({ columns, data: approvals });
 
   return (
     <Table {...getTableProps()}>
