@@ -1,6 +1,6 @@
 import { User } from './user';
 
-export interface Notie {
+export interface Noti {
   _id?: number;
   user: User;
   isRead: Boolean;
