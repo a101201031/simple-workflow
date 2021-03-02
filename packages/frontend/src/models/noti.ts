@@ -6,5 +6,5 @@ export interface Noti {
   isRead: Boolean;
   notiMessage: String;
   insertDate: Date;
-  readDate: Date;
+  readDate: Date | null;
 }
