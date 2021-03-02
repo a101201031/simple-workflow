@@ -64,6 +64,22 @@ server.get('/approval', (_, res) => {
   ]);
 });
 
+server.get('/noti', (_, res) => {
+  res.json([
+    {
+      user: {
+        userName: 'JavaScript cho',
+        email: 'admin@alwayscoding',
+        groupName: 'tech dept',
+      },
+      isRead: false,
+      notiMessage: 'admin test',
+      insertDate: new Date(),
+      readDate: null,
+    },
+  ]);
+});
+
 server.use(router);
 
 server.listen(port, () => {
