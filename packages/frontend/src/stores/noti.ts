@@ -2,7 +2,7 @@ import { atom, selector } from 'recoil';
 import { Noti } from 'models';
 import { fetcher } from 'helper';
 
-export const NotiSelector = selector<Noti>({
+export const NotiSelector = selector<Noti[]>({
   key: 'NotiSelector',
   get: async () => {
     try {
@@ -14,4 +14,7 @@ export const NotiSelector = selector<Noti>({
   },
 });
 
-export const NotiAtom = atom({ key: 'NotiAtom', default: NotiSelector });
+export const NotiAtom = atom<Noti[]>({
+  key: 'NotiAtom',
+  default: NotiSelector,
+});
