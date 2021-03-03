@@ -2,6 +2,10 @@ import {
   Box,
   Flex,
   Heading,
+  LinkBox,
+  LinkOverlay,
+  Spacer,
+  StackDivider,
   Table,
   Tbody,
   Td,
@@ -9,12 +13,13 @@ import {
   Th,
   Thead,
   Tr,
+  VStack,
 } from '@chakra-ui/react';
 import { Approval } from 'models';
 import React, { FC } from 'react';
 import { Column, useTable } from 'react-table';
 import { useRecoilValue } from 'recoil';
-import { ApprSelector, MeSelector } from 'stores';
+import { ApprSelector, MeSelector, NotiSelector } from 'stores';
 
 export const Dashboard: FC = () => {
   const me = useRecoilValue(MeSelector);
@@ -23,41 +28,85 @@ export const Dashboard: FC = () => {
     <Flex
       w="100%"
       h="100%"
-      justifyContent="center"
-      alignItems="center"
+      justifyContent="space-around"
+      alignContent="space-around"
       flexWrap="wrap"
     >
-      <Flex
-        w="320px"
-        h="240px"
+      <Flex w="80%" h="45%" justifyContent="space-between">
+        <Flex
+          w="50%"
+          h="100%"
+          p="16px"
+          bgColor="gray.800"
+          borderWidth="1px"
+          borderRadius="16px"
+          boxShadow="lg"
+          justifyContent="space-around"
+          alignItems="center"
+        >
+          <Box w="256px" h="256px" bgColor="red">
+            IMG
+          </Box>
+          <Flex flexDir="column" textAlign="right">
+            <Box>
+              <Heading fontSize="24px">Hello, {me.userName}</Heading>
+            </Box>
+            <Spacer />
+            <Text>{me.group?.groupName || 'None Group.'}</Text>
+            <Text>{me.email}</Text>
+            <Text fontWeight="bold">Edit Profile</Text>
+          </Flex>
+        </Flex>
+
+        <Box
+          w="40%"
+          h="100%"
+          p="16px"
+          bgColor="gray.800"
+          borderWidth="1px"
+          borderRadius="16px"
+          boxShadow="lg"
+        >
+          <Heading m="8px">Notication</Heading>
+          <Noti />
+        </Box>
+      </Flex>
+
+      <Box
+        w="80%"
+        h="50%"
         p="16px"
         bgColor="gray.800"
         borderWidth="1px"
         borderRadius="16px"
         boxShadow="lg"
       >
-        <Box w="64px" h="64px" bgColor="red">
-          IMG
-        </Box>
-        <Box textAlign="right">
-          <Heading fontSize="24px">Hello, {me.userName}</Heading>
-          <Text>{me.group?.groupName || 'None Group.'}</Text>
-          <Text>{me.email}</Text>
-          <Text fontWeight="bold">Edit Profile</Text>
-        </Box>
-      </Flex>
-
-      <Box
-        w="60%"
-        h="30%"
-        p="8px"
-        bgColor="gray.800"
-        borderWidth="1px"
-        borderRadius="16px"
-        boxShadow="lg"
-      >
+        <Heading m="8px">My Request</Heading>
         <ApprTables />
       </Box>
+    </Flex>
+  );
+};
+
+const Noti: FC = () => {
+  const notis = useRecoilValue(NotiSelector);
+  return (
+    <Flex>
+      <VStack
+        divider={<StackDivider borderColor="gray.200" />}
+        spacing="16px"
+        align="stretch"
+      >
+        {notis.map((val, idx) => (
+          <LinkBox w="100%" maxW="100%" p="4px" rounded="md" key={idx + 1}>
+            <Box>
+              <LinkOverlay href="/"> {val.notiMessage}</LinkOverlay>
+              {/* <Text> {val.notiMessage}</Text> */}
+            </Box>
+            <Text></Text>
+          </LinkBox>
+        ))}
+      </VStack>
     </Flex>
   );
 };
