@@ -67,6 +67,7 @@ server.get('/approval', (_, res) => {
 server.get('/noti', (_, res) => {
   res.json([
     {
+      id: 1,
       user: {
         userName: 'JavaScript cho',
         email: 'admin@alwayscoding',
@@ -74,10 +75,12 @@ server.get('/noti', (_, res) => {
       },
       isRead: false,
       notiMessage: 'Your request has been approved. (Leave)',
+      notiUrl: '/appr/approval',
       insertDate: new Date(),
       readDate: null,
     },
     {
+      id: 2,
       user: {
         userName: 'JavaScript cho',
         email: 'admin@alwayscoding',
@@ -85,10 +88,12 @@ server.get('/noti', (_, res) => {
       },
       isRead: false,
       notiMessage: 'admin testttttttttttttt ttt tt!!',
+      notiUrl: '/appr/approval',
       insertDate: new Date(),
       readDate: null,
     },
     {
+      id: 3,
       user: {
         userName: 'JavaScript cho',
         email: 'admin@alwayscoding',
@@ -96,6 +101,7 @@ server.get('/noti', (_, res) => {
       },
       isRead: false,
       notiMessage: 'admin testttttttttttttt ttt tt!!',
+      notiUrl: '/appr/approval',
       insertDate: new Date(),
       readDate: null,
     },
