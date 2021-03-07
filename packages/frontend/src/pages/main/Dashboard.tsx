@@ -18,8 +18,9 @@ import {
 import { Approval } from 'models';
 import React, { FC } from 'react';
 import { Column, useTable } from 'react-table';
-import { useRecoilValue } from 'recoil';
-import { ApprSelector, MeSelector, NotiSelector } from 'stores';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { ApprSelector, MeSelector, NotiAtom } from 'stores';
+import { MdClose } from 'react-icons/md';
 
 export const Dashboard: FC = () => {
   const me = useRecoilValue(MeSelector);
@@ -89,22 +90,41 @@ export const Dashboard: FC = () => {
 };
 
 const Noti: FC = () => {
-  const notis = useRecoilValue(NotiSelector);
+  const [notis, setNotis] = useRecoilState(NotiAtom);
+
+  const handleClick = (id: number) => {
+    setNotis(notis.filter((noti) => noti.id !== id));
+  };
   return (
     <Flex>
       <VStack
         divider={<StackDivider borderColor="gray.200" />}
         spacing="16px"
         align="stretch"
+        w="100%"
+        maxW="100%"
       >
         {notis.map((val, idx) => (
-          <LinkBox w="100%" maxW="100%" p="4px" rounded="md" key={idx + 1}>
-            <Box>
-              <LinkOverlay href="/"> {val.notiMessage}</LinkOverlay>
-              {/* <Text> {val.notiMessage}</Text> */}
+          <Flex
+            bgColor="gray.700"
+            justifyContent="space-between"
+            alignItems="center"
+            key={idx + 1}
+          >
+            <LinkBox p="4px" maxW="90%" rounded="md">
+              <LinkOverlay href={`${val.notiUrl}`}>
+                <Text isTruncated={true}>{val.notiMessage}</Text>
+              </LinkOverlay>
+            </LinkBox>
+            <Box
+              cursor="pointer"
+              onClick={(e) => {
+                handleClick(val.id);
+              }}
+            >
+              <MdClose />
             </Box>
-            <Text></Text>
-          </LinkBox>
+          </Flex>
         ))}
       </VStack>
     </Flex>
