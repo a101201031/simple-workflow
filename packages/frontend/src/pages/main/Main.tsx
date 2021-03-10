@@ -1,16 +1,23 @@
 import { Box, Flex, Skeleton, Spacer, Spinner, Text } from '@chakra-ui/react';
+import { Approval } from 'pages/appr/Approval';
+import { Dashboard } from 'pages/main/Dashboard';
 import React, { FC, Suspense } from 'react';
 import {
   MdKeyboardArrowDown,
   MdKeyboardArrowRight,
   MdSubdirectoryArrowRight,
 } from 'react-icons/md';
-import { Link, Redirect, Route, Switch, useHistory } from 'react-router-dom';
+import {
+  Link,
+  Redirect,
+  Route,
+  Switch,
+  useHistory,
+  useRouteMatch,
+} from 'react-router-dom';
 import { atom, useRecoilState, useRecoilValue } from 'recoil';
 import { MeSelector } from 'stores';
 import { SideChild, SideContents } from 'styles';
-import { Req } from './approval/Req';
-import { Dashboard } from './Dashboard';
 
 interface MenuActiveTypes {
   active: 'appr' | undefined;
@@ -23,6 +30,7 @@ const MenuActiveAtom = atom<MenuActiveTypes>({
 
 export const Main: FC = () => {
   const { push } = useHistory();
+  const { path, url } = useRouteMatch();
 
   if (localStorage.getItem('accessToken') !== '123123123123') {
     push('/');
@@ -74,9 +82,11 @@ export const Main: FC = () => {
           </SideContents>
           <SideChild display={activeMenu.active ? 'flex' : 'none'}>
             <MdSubdirectoryArrowRight />
-            <Box w="150px">
-              <Text isTruncated>Request for Appr.</Text>
-            </Box>
+            <Link to={`${url}/approval/request`}>
+              <Box w="150px">
+                <Text isTruncated>Request for Appr.</Text>
+              </Box>
+            </Link>
             <Spacer />
           </SideChild>
           <SideChild display={activeMenu.active ? 'flex' : 'none'}>
@@ -105,8 +115,8 @@ export const Main: FC = () => {
       <Box w="calc(100vw - 240px)">
         <Suspense fallback={<Spinner />}>
           <Switch>
-            <Route path="/main" component={Dashboard} />
-            <Route path="/main/approval/request" component={Req} />
+            <Route exact path={`${path}`} component={Dashboard} />
+            <Route path={`${path}/approval/request`} component={Approval} />
             <Redirect path="/*" to="/main" />
           </Switch>
         </Suspense>
